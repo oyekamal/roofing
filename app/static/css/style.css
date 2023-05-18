@@ -9,14 +9,56 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap');
+
+/* :root {
+  --color-body: #f6f6f6;
+  --color-body2: #8c8b8b;
+  --color-heading: #eef3db;
+  --color-base: #1f2231;
+  --color-base2: #2C2D34; 
+  --color-brand: #de3902;
+  --color-brand2: #da7e05;
+  --color-brand3: #f8b76d;
+  --font-base: "Bai Jamjuree";
+} */
+
+/* :root {
+  --color-body: #fff8f2ea;
+  --color-body2: #A7BBC7;
+  --color-heading: #faefdae4;
+  --color-base: #1d2535;
+  --color-base2: #555273; 
+  --color-brand: rgb(76, 100, 151);
+  --color-brand2: #E23E57;
+  --color-brand3: #de98a3;
+  --font-base: "Bai Jamjuree";
+} */
+
+:root {
+  /* background */
+  --color-body: #f1f6ff;
+  --color-body2: #ababaf;
+  --color-heading: #fefefe;
+  /* background  ^*/
+  /* text  */
+  --color-base: #1c1c1c;
+  --color-base2: #212121;  
+  /*  text ^ */
+  --color-brand: #72147E;
+  --color-brand2: #F21170;
+  --color-brand3: #e28b6b;
+  --font-base: "Bai Jamjuree";
+}
 body {
   background: #fff;
   color: #444;
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-base), sans-serif;
 }
 
 a {
-  color: #1bb1dc;
+  color: var(--color-brand);
   text-decoration: none;
   transition: 0.5s;
 }
@@ -40,7 +82,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
@@ -56,7 +98,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #1bb1dc;
+  background: var(--color-brand);
   width: 40px;
   height: 40px;
   border-radius: 50px;
@@ -144,7 +186,7 @@ h6 {
 }
 
 #header .social-links a:hover {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 @media (max-width: 992px) {
@@ -187,7 +229,7 @@ h6 {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 24px;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
@@ -207,7 +249,7 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 .navbar .dropdown ul {
@@ -242,7 +284,7 @@ h6 {
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
 .navbar .dropdown ul li:hover>a {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 .navbar .dropdown:hover>ul {
@@ -341,7 +383,7 @@ h6 {
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 .navbar-mobile .getstarted,
@@ -383,7 +425,7 @@ h6 {
 .navbar-mobile .dropdown .dropdown ul a:hover,
 .navbar-mobile .dropdown .dropdown ul .active:hover,
 .navbar-mobile .dropdown .dropdown ul li:hover>a {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 .navbar-mobile .dropdown>.dropdown-active,
@@ -439,7 +481,7 @@ h6 {
 }
 
 #hero .intro-info h2 span {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 @media (max-width: 991px) {
@@ -451,7 +493,7 @@ h6 {
 
 #hero .intro-info .btn-get-started,
 #hero .intro-info .btn-services {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -461,7 +503,7 @@ h6 {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #1bb1dc;
+  background: var(--color-brand);
   color: #fff;
 }
 
@@ -485,7 +527,7 @@ section {
   text-align: center;
   font-weight: 700;
   position: relative;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
 }
 
 .section-header p {
@@ -521,7 +563,7 @@ section {
 
 #about .about-content h2 {
   color: #413e66;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   font-weight: 700;
 }
 
@@ -544,7 +586,7 @@ section {
 #about .about-content ul li i {
   font-size: 20px;
   padding-right: 4px;
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #about .about-img {
@@ -634,7 +676,7 @@ section {
 }
 
 #services .box:hover .title a {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #services .description {
@@ -685,7 +727,7 @@ section {
 }
 
 #why-us .counters span {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   font-weight: bold;
   font-size: 48px;
   display: block;
@@ -695,7 +737,7 @@ section {
 #why-us .counters p {
   padding: 0;
   margin: 0 0 20px 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   font-size: 14px;
   color: #8a87b6;
 }
@@ -727,7 +769,7 @@ section {
 }
 
 #call-to-action .cta-btn {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 1px;
@@ -741,8 +783,8 @@ section {
 }
 
 #call-to-action .cta-btn:hover {
-  background: #1bb1dc;
-  border: 3px solid #1bb1dc;
+  background: var(--color-brand);
+  border: 3px solid var(--color-brand);
 }
 
 /* Features Section
@@ -783,7 +825,7 @@ section {
 
 #portfolio #portfolio-flters li:hover,
 #portfolio #portfolio-flters li.filter-active {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #portfolio #portfolio-flters li:last-child {
@@ -835,7 +877,7 @@ section {
 }
 
 #portfolio .portfolio-item .portfolio-wrap .portfolio-info h4 a:hover {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #portfolio .portfolio-item .portfolio-wrap .portfolio-info p {
@@ -854,7 +896,7 @@ section {
   text-align: center;
   width: 36px;
   height: 36px;
-  background: #1bb1dc;
+  background: var(--color-brand);
   border-radius: 50%;
   margin: 10px 4px 0 4px;
   display: inline-flex;
@@ -908,11 +950,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #1bb1dc;
+  border: 1px solid var(--color-brand);
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #1bb1dc;
+  background-color: var(--color-brand);
 }
 
 .portfolio-details .portfolio-info {
@@ -1032,11 +1074,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #1bb1dc;
+  border: 1px solid var(--color-brand);
 }
 
 #testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #1bb1dc;
+  background-color: var(--color-brand);
 }
 
 /* Team Section
@@ -1099,7 +1141,7 @@ section {
 }
 
 #team .member .social a:hover {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #team .member .social i {
@@ -1132,11 +1174,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #1bb1dc;
+  border: 1px solid var(--color-brand);
 }
 
 #clients .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #1bb1dc;
+  background-color: var(--color-brand);
 }
 
 /* Pricing Section
@@ -1173,7 +1215,7 @@ section {
   left: 0;
   width: 0%;
   height: 5px;
-  background-color: #1bb1dc;
+  background-color: var(--color-brand);
   transition: 0.5s;
 }
 
@@ -1244,7 +1286,7 @@ section {
   letter-spacing: 1px;
   border-radius: 3px;
   display: inline-block;
-  background: #1bb1dc;
+  background: var(--color-brand);
   color: #fff;
 }
 
@@ -1273,7 +1315,7 @@ section {
 #faq .faq-list .question {
   display: block;
   position: relative;
-  font-family: #1bb1dc;
+  font-family: var(--color-brand);
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
@@ -1304,7 +1346,7 @@ section {
 }
 
 #faq .faq-list .collapsed:hover {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #faq .faq-list .collapsed .icon-show {
@@ -1376,7 +1418,7 @@ section {
   margin: 0 0 20px 0;
   padding: 2px 0 2px 0;
   line-height: 1;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   color: #413e66;
   font-weight: 400;
   letter-spacing: 3px;
@@ -1387,7 +1429,7 @@ section {
   font-size: 13px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-base), sans-serif;
   color: #535074;
 }
 
@@ -1395,7 +1437,7 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #1bb1dc;
+  background: var(--color-brand);
   color: #fff;
   margin-right: 4px;
   border-radius: 50%;
@@ -1453,7 +1495,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul a:hover {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #footer .footer-top .footer-contact {
@@ -1476,8 +1518,8 @@ section {
 }
 
 #footer .footer-top .footer-newsletter input[type=submit] {
-  background: #1bb1dc;
-  border: 1px solid #1bb1dc;
+  background: var(--color-brand);
+  border: 1px solid var(--color-brand);
   width: 35%;
   padding: 6px 0;
   text-align: center;
@@ -1549,7 +1591,7 @@ section {
 
 #footer .php-email-form input:focus,
 #footer .php-email-form textarea:focus {
-  border-color: #1bb1dc;
+  border-color: var(--color-brand);
 }
 
 #footer .php-email-form input {
@@ -1561,7 +1603,7 @@ section {
 }
 
 #footer .php-email-form button[type=submit] {
-  background: #1bb1dc;
+  background: var(--color-brand);
   border: 0;
   border-radius: 3px;
   padding: 8px 30px;
@@ -1599,7 +1641,7 @@ section {
 }
 
 #footer .credits a {
-  color: #1bb1dc;
+  color: var(--color-brand);
 }
 
 #footer .credits a:hover {
