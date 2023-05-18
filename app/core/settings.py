@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     "service",
 
     # packages
-    
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "crispy_forms",
+
 ]
 
 MIDDLEWARE = [
@@ -74,7 +78,31 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ACCOUNT_EMAIL_REQUIRED = True
 
+# Make email verification mandatory to avoid junk email accounts
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+EMAIL_TIMEOUT = 5
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL ="kamal.umar0987@gmail.com"
+EMAIL_HOST_PASSWORD = "guhwrrcrmkxanuaz"
+EMAIL_SUBJECT_PREFIX = 'roofing'
+
+
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
