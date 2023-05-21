@@ -80,17 +80,26 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
+
+          {% if user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="/hire/">Hire</a></li>
+          <li><a class="nav-link scrollto" href="/accounts/logout/">Sign out</a></li>
+          {% else %}
+          <li><a class="nav-link scrollto" href="/accounts/signup/">Sign up</a></li>
+          <li><a class="nav-link scrollto" href="/accounts/login/">Sign in</a></li>
+          {% endif %}
+
+          {% comment %} <li><a class="nav-link scrollto" href="#footer">Contact</a></li> {% endcomment %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <div class="social-links">
+      {% comment %} <div class="social-links">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      </div>
+      </div> {% endcomment %}
 
     </div>
   </header><!-- End Header -->
