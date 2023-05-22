@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import ServiceRequestForm
-
+from .forms import ServiceRequestForm, UserProfileForm
+from .models import UserProfile
 # Create your views here.
 def home(request):
 
@@ -9,21 +9,40 @@ def home(request):
 
 def service_request(request):
     if request.method == "GET":
-        form = ServiceRequestForm
+        form = ServiceRequestForm()
+        
+        # Check if UserProfile exists
+        userprofile = UserProfile.objects.filter(user=request.user).first()
+        if userprofile:
+            userprofile_form = UserProfileForm(instance=userprofile)
+            show_userprofile_form = False
+        else:
+            userprofile_form = UserProfileForm()
+            show_userprofile_form = True
+
         mydict = {
             "form": form,
+            "userprofile_form": userprofile_form,
+            "show_userprofile_form": show_userprofile_form,
         }
         return render(request, "service/service-request.html", context=mydict)
     else:
         try:
             request.POST._mutable = True
             request_data = request.POST.copy()
-            print(request.user)
-            print(request.user.id)
-            print(request)
             request_data["client"] = request.user.id
             request_data["status"] = "Open"
             form = ServiceRequestForm(request_data)
+            
+            # Check if UserProfile exists, if not, create it
+            userprofile = UserProfile.objects.filter(user=request.user).first()
+            if not userprofile:
+                userprofile_data = {"user": request.user.id, "full_name": request_data.get("full_name"), "address": request_data.get("address"), "phone_number": request_data.get("phone_number")}
+                userprofile_form = UserProfileForm(userprofile_data)
+                if userprofile_form.is_valid():
+                    userprofile_form.save()
+
+            
             if form.is_valid():
                 form.save()
                 return render(
@@ -33,4 +52,4 @@ def service_request(request):
                 print(form.errors)
         except Exception as e:
             print(e)
-        return render(request, "service/service-request.html", {"form": form})
+            return render(request, "service/service-request.html", {"form": form})
