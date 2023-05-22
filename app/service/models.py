@@ -21,7 +21,7 @@ class ServiceType(models.Model):
     description = models.TextField()
 
 class ServiceRequest(models.Model):
-    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     service_area = models.ForeignKey(ServiceArea, on_delete=models.CASCADE)
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
     description = models.TextField()

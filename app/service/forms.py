@@ -1,4 +1,4 @@
-# from django import forms
+from django import forms
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.forms import ModelForm
@@ -13,6 +13,6 @@ class ServiceRequestForm(ModelForm):
 
     class Meta:
         model = ServiceRequest
-        fields = ('__all__')
-        # fields = ("audio", "script", "name", "host", "mouth", "user")
-        # widgets = {"host": forms.HiddenInput(), "user": forms.HiddenInput()}
+        # fields = ('__all__')
+        fields = ("service_area", "service_type", "description")
+        widgets = {"status": forms.HiddenInput(), "client": forms.HiddenInput()}

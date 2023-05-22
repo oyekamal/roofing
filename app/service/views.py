@@ -16,8 +16,14 @@ def service_request(request):
         return render(request, "service/service-request.html", context=mydict)
     else:
         try:
-            
-            form = ServiceRequestForm(request.POST)
+            request.POST._mutable = True
+            request_data = request.POST.copy()
+            print(request.user)
+            print(request.user.id)
+            print(request)
+            request_data["client"] = request.user.id
+            request_data["status"] = "Open"
+            form = ServiceRequestForm(request_data)
             if form.is_valid():
                 form.save()
                 return render(
