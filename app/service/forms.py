@@ -11,7 +11,7 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ('__all__')
-        # widgets = {"status": forms.HiddenInput(), "user": forms.HiddenInput()}
+        widgets = {"is_service_provider": forms.HiddenInput(), "is_client": forms.HiddenInput(), "user": forms.HiddenInput()}
 
 class ServiceRequestForm(ModelForm):
     class Meta:
