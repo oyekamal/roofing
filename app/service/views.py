@@ -1,11 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+
 from .forms import ServiceRequestForm, UserProfileForm
-from .models import UserProfile
+from .models import UserProfile, ServiceRequest
 # Create your views here.
 def home(request):
 
     return render(request, "service/home.html")
 
+def service_request_list(request):
+    service_requests = ServiceRequest.objects.filter(client=request.user)
+    return render(request, "service/service_request_list.html", {"service_requests":service_requests})
+
+def service_request_update(request, pk):
+    service_request = get_object_or_404(ServiceRequest, pk=pk)
+    if request.method == 'POST':
+        form = ServiceRequestForm(request.POST, instance=service_request)
+        if form.is_valid():
+            form.save()
+            return redirect('service_request_list')
+    else:
+        form = ServiceRequestForm(instance=service_request)
+    return render(request, 'service/service_request_form.html', {'form': form})
+
+def service_request_delete(request, pk):
+    service_request = get_object_or_404(ServiceRequest, pk=pk)
+    if request.method == 'POST':
+        service_request.delete()
+        return redirect('service_request_list')
+    return render(request, 'service/service_request_confirm_delete.html', {'service_request': service_request})
 
 def service_request(request):
     if request.method == "GET":
@@ -25,7 +47,7 @@ def service_request(request):
             "userprofile_form": userprofile_form,
             "show_userprofile_form": show_userprofile_form,
         }
-        return render(request, "service/service-request.html", context=mydict)
+        return render(request, "service/service_request_form.html", context=mydict)
     else:
         try:
             request.POST._mutable = True
@@ -46,10 +68,10 @@ def service_request(request):
             if form.is_valid():
                 form.save()
                 return render(
-                    request, "service/service-request.html", {"form": form, "success": True}
+                    request, "service/service_request_form.html", {"form": form, "success": True}
                 )
             else:
                 print(form.errors)
         except Exception as e:
             print(e)
-            return render(request, "service/service-request.html", {"form": form})
+            return render(request, "service/service_request_form.html", {"form": form})
