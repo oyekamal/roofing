@@ -37,7 +37,7 @@ def service_request(request):
             # Check if UserProfile exists, if not, create it
             userprofile = UserProfile.objects.filter(user=request.user).first()
             if not userprofile:
-                userprofile_data = {"user": request.user.id, "full_name": request_data.get("full_name"), "address": request_data.get("address"), "phone_number": request_data.get("phone_number")}
+                userprofile_data = {"user": request.user.id, "full_name": request_data.get("full_name"), "address": request_data.get("address"), "phone_number": request_data.get("phone_number"),"is_client":True}
                 userprofile_form = UserProfileForm(userprofile_data)
                 if userprofile_form.is_valid():
                     userprofile_form.save()
