@@ -42,7 +42,7 @@
                             <td>{{each_service_request.created_at}}</td>
                             {% comment %} <td><span class="badge badge-success bg-success text-white">Paid</span></td> {% endcomment %}
                             <td>
-                                <a href="" class="btn btn-outline-secondary"><i class="icon-pencil"></i></a>
+                                <a href="{% url 'service:service_request_update' each_service_request.pk %}" class="btn btn-outline-secondary"><i class="icon-pencil"></i></a>
                                 <a href="{% url 'service:service_request_delete' each_service_request.pk %}" class="btn btn-outline-secondary"><i class="icon-trash"></i></a>                            </td>
                         </tr>
                         {% endfor %}

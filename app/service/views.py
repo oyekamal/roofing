@@ -5,34 +5,37 @@ from .models import UserProfile, ServiceRequest
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 # Create your views here.
+
+
 def home(request):
 
     return render(request, "service/home.html")
 
+
 def service_request_list(request):
     service_requests = ServiceRequest.objects.filter(client=request.user)
-    return render(request, "service/service_request_list.html", {"service_requests":service_requests})
+    return render(request, "service/service_request_list.html", {"service_requests": service_requests})
 
-def service_request_update(request, pk):
-    service_request = get_object_or_404(ServiceRequest, pk=pk)
-    if request.method == 'POST':
-        form = ServiceRequestForm(request.POST, instance=service_request)
-        if form.is_valid():
-            form.save()
-            return redirect('service_request_list')
-    else:
-        form = ServiceRequestForm(instance=service_request)
-    return render(request, 'service/service_request_form.html', {'form': form})
+
+class ServiceRequestUpdateView(UpdateView):
+    model = ServiceRequest
+    fields = ['service_area', 'service_type', 'description']
+    template_name = 'service/service_request_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('service:service_request_list')
+
 
 class ServiceRequestDeleteView(DeleteView):
     model = ServiceRequest
     success_url = reverse_lazy('service:service_request_list')
     template_name = 'service/service_request_delete.html'
 
+
 def service_request(request):
     if request.method == "GET":
         form = ServiceRequestForm()
-        
+
         # Check if UserProfile exists
         userprofile = UserProfile.objects.filter(user=request.user).first()
         if userprofile:
@@ -55,20 +58,21 @@ def service_request(request):
             request_data["client"] = request.user.id
             request_data["status"] = "Open"
             form = ServiceRequestForm(request_data)
-            
+
             # Check if UserProfile exists, if not, create it
             userprofile = UserProfile.objects.filter(user=request.user).first()
             if not userprofile:
-                userprofile_data = {"user": request.user.id, "full_name": request_data.get("full_name"), "address": request_data.get("address"), "phone_number": request_data.get("phone_number"),"is_client":True}
+                userprofile_data = {"user": request.user.id, "full_name": request_data.get("full_name"), "address": request_data.get(
+                    "address"), "phone_number": request_data.get("phone_number"), "is_client": True}
                 userprofile_form = UserProfileForm(userprofile_data)
                 if userprofile_form.is_valid():
                     userprofile_form.save()
 
-            
             if form.is_valid():
                 form.save()
                 return render(
-                    request, "service/service_request_form.html", {"form": form, "success": True}
+                    request, "service/service_request_form.html", {
+                        "form": form, "success": True}
                 )
             else:
                 print(form.errors)
