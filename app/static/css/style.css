@@ -1625,6 +1625,6 @@ section {
 }
 
 .fixed-height {
-  height: 100px; /* set the desired height */
+  height: 500px; /* set the desired height */
   overflow: auto;
 }
