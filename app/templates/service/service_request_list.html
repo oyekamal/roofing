@@ -37,7 +37,8 @@
                             <td>Robert Hammer</td>
                             <td>#{{each_service_request.id}}</td>
                             <td><img src="assets/images/ecommerce/1.png" width="48" alt="Product img"></td>
-                            <td><h5>{{each_service_request.service_area.name}}</h5></td>
+                            {% comment %} <td><h5>{{each_service_request.service_area.name}}</h5></td> {% endcomment %}
+                            <td><a href="{% url 'service:service_request_detail' each_service_request.pk %}">{{each_service_request.service_area.name}}</a></td>
                             <td>{{each_service_request.service_type.name}}</td>
                             <td>{{each_service_request.created_at}}</td>
                             {% comment %} <td><span class="badge badge-success bg-success text-white">Paid</span></td> {% endcomment %}

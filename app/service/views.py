@@ -4,6 +4,8 @@ from .forms import ServiceRequestForm, UserProfileForm
 from .models import UserProfile, ServiceRequest
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic import DetailView
+
 # Create your views here.
 
 
@@ -31,6 +33,9 @@ class ServiceRequestDeleteView(DeleteView):
     success_url = reverse_lazy('service:service_request_list')
     template_name = 'service/service_request_delete.html'
 
+class ServiceRequestDetailView(DetailView):
+    model = ServiceRequest
+    template_name = 'service/service_request_detail.html'
 
 def service_request(request):
     if request.method == "GET":

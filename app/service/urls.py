@@ -13,4 +13,8 @@ urlpatterns = [
          views.ServiceRequestDeleteView.as_view(), name='service_request_delete'),
     path('service_request_update/<int:pk>/',
          views.ServiceRequestUpdateView.as_view(), name='service_request_update'),
+
+    path('service_request/<int:pk>/', views.ServiceRequestDetailView.as_view(),
+         name='service_request_detail'),
+
 ]
