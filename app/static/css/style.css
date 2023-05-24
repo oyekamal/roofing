@@ -1623,3 +1623,8 @@ section {
 #footer .credits a:hover {
   color: var(--color-brand2);
 }
+
+.fixed-height {
+  height: 100px; /* set the desired height */
+  overflow: auto;
+}

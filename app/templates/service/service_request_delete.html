@@ -12,14 +12,13 @@
     <div class="w-75 p-5 shadow rounded">
 
 
-<h1>Delete Service Request</h1>
-  <p>Are you sure you want to delete "{{ service_request }}"?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-    <a href="{% url 'service_request_list' %}">Cancel</a>
-  </form>
-
+      <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm">
+        <button onclick="window.history.back();" type="button">Cancel</button>
+    </form>
+    
 
 </div>
 </div>

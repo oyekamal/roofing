@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import ServiceRequestForm, UserProfileForm
 from .models import UserProfile, ServiceRequest
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView, DeleteView
 # Create your views here.
 def home(request):
 
@@ -22,12 +24,10 @@ def service_request_update(request, pk):
         form = ServiceRequestForm(instance=service_request)
     return render(request, 'service/service_request_form.html', {'form': form})
 
-def service_request_delete(request, pk):
-    service_request = get_object_or_404(ServiceRequest, pk=pk)
-    if request.method == 'POST':
-        service_request.delete()
-        return redirect('service_request_list')
-    return render(request, 'service/service_request_confirm_delete.html', {'service_request': service_request})
+class ServiceRequestDeleteView(DeleteView):
+    model = ServiceRequest
+    success_url = reverse_lazy('service:service_request_list')
+    template_name = 'service/service_request_delete.html'
 
 def service_request(request):
     if request.method == "GET":
