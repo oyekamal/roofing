@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import ServiceRequestForm, UserProfileForm
-from .models import UserProfile, ServiceRequest
+from .models import UserProfile, ServiceRequest, Offer
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import DetailView
@@ -13,7 +13,10 @@ def home(request):
 
     return render(request, "service/home.html")
 
-
+class OfferDetailView(DetailView):
+    model = Offer
+    template_name = 'service/offer_detail.html'
+ 
 def service_request_list(request):
     service_requests = ServiceRequest.objects.filter(client=request.user)
     return render(request, "service/service_request_list.html", {"service_requests": service_requests})

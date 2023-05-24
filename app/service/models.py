@@ -67,7 +67,7 @@ class PreviousWork(models.Model):
 
 class Offer(models.Model):
     service_provider = models.ForeignKey(
-        ServiceProvider, on_delete=models.CASCADE)
+        ServiceProvider, on_delete=models.CASCADE, related_name='previous_work')
     service_request = models.ForeignKey(
         ServiceRequest, on_delete=models.CASCADE)
     cost_estimate = models.DecimalField(max_digits=10, decimal_places=2)

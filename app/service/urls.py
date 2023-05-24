@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('service_request/<int:pk>/', views.ServiceRequestDetailView.as_view(),
          name='service_request_detail'),
+    path('offer/<int:pk>/', views.OfferDetailView.as_view(), name='offer_detail'),
 
 ]

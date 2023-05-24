@@ -43,8 +43,8 @@
                         <tr>
                             <td><span class="social_icon linkedin"><i class="fa fa-linkedin"></i></span>
                             </td>
-                            <td><span class="list-name">{{ offer.service_provider.business_name }}</span>
-                                {% comment %} <span class="text-muted">Florida, United States</span> {% endcomment %}
+                            <td><a href="{% url 'service:offer_detail' offer.pk %}">{{ offer.service_provider.business_name }}</a></td>
+                            {% comment %} <span class="text-muted">Florida, United States</span> {% endcomment %}
                             </td>
                             <td>19K</td>
                             <td>${{ offer.cost_estimate }}</td>
