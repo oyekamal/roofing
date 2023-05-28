@@ -1628,3 +1628,20 @@ section {
   height: 500px; /* set the desired height */
   overflow: auto;
 }
+
+
+#serviceworkimage {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-post {
+  text-align: center;
+}
+
+#company-logo {
+  max-width: 100%;
+  height: auto;
+}

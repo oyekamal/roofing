@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
+# from location_field.models.plain import PlainLocationField
 
 
 class UserProfile(models.Model):
@@ -50,7 +51,10 @@ class ServiceProvider(models.Model):
     contact_details = models.CharField(max_length=255)
     company_logo = models.ImageField(upload_to="company_logos/")
     company_description = models.TextField()
-
+    address = models.CharField(max_length=255, null=True)
+    phone_number = models.CharField(max_length=20, null=True)
+    # location = PlainLocationField(based_fields=['city'], zoom=7)
+    email = models.EmailField()  # Add the email field
     def __str__(self):
         return self.business_name
 

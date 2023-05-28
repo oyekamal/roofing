@@ -49,11 +49,17 @@ INSTALLED_APPS = [
     
     "crispy_bootstrap5",
     'django_extensions',
+    # 'location_field.apps.DefaultConfig',
 
 ]
+
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+# LOCATION_FIELD = {
+#     'search.provider': 'google',
+# }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

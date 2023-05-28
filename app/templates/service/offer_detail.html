@@ -1,5 +1,176 @@
-<h1>{{ object.service_provider.business_name }} Details</h1>
-<img src="{{ object.service_provider.company_logo.url }}" alt="Company Logo">
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}   
+{% comment %} {% load location_field %} {% endcomment %}
+
+<section id="hero" class="clearfix">
+    <div class="d-flex justify-content-center w-100 ">
+    <div class="w-75 p-5 shadow rounded">
+    <!-- mani page content body part -->
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <h2>{{ object.service_provider.business_name }}</h2>
+                    </div>
+                    {% comment %} <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="page_action">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i> Download report</button>
+                                <button type="button" class="btn btn-secondary"><i class="fa fa-send"></i> Send report</button>
+                            </div>
+                            <div class="p-2 d-flex">
+                                
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+
+            <div class="row clearfix">
+
+                <div class="col-lg-3 col-md-12">
+                    <div class="card profile-header">
+                        <div class="body">
+                            <div class="profile-image">
+                                <img id="company-logo" src="{{object.service_provider.company_logo.url}}" class="rounded-circle" alt="">
+                            </div>                          
+                            <div>
+                                <h4 class="mb-0"><strong>{{ object.service_provider.business_name }}</strong></h4>
+                                <span>{{ object.service_provider.address }}</span>
+                            </div>
+                            {% comment %} <div class="m-t-15">
+                                <button class="btn btn-primary">Follow</button>
+                                <button class="btn btn-outline-secondary">Message</button>
+                            </div>                             {% endcomment %}
+                        </div>
+                    </div>
+
+                    <div class="card">
+    
+                        <div class="body">
+                            <small class="text-muted">Address: </small>
+                            <p>{{ object.service_provider.address }}</p>
+                            <div>
+                                {{  object.serviceprovider.location }}
+                            </div>
+                            <hr>
+                            <small class="text-muted">Email address: </small>
+                            <p>{{ object.service_provider.email }}</p>                            
+                            <hr>
+                            <small class="text-muted">Mobile: </small>
+                            <p>{{ object.service_provider.phone_number }}</p>
+                            <hr>
+
+                            {% comment %} <small class="text-muted">Social: </small>
+                            <p><i class="fa fa-twitter m-r-5"></i> twitter.com/example</p>
+                            <p><i class="fa fa-facebook  m-r-5"></i> facebook.com/example</p>
+                            <p><i class="fa fa-github m-r-5"></i> github.com/example</p>
+                            <p><i class="fa fa-instagram m-r-5"></i> instagram.com/example</p> {% endcomment %}
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+
+                    <div class="card">
+                        <div class="body">
+                            {% comment %} <ul class="nav nav-tabs-new">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Overview">Overview</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Settings">Settings</a></li>
+                            </ul> {% endcomment %}
+                        </div>
+                    </div>
+
+                    <div class="tab-content padding-0">
+
+                        <div class="tab-pane active" id="Overview">
+                            <div class="card">
+
+                            </div>
+                            {% for work in object.service_provider.previouswork_set.all %}
+                            <div class="card single_post">
+                              <div class="body">
+                                <div class="img-post">
+                                  <img id="serviceworkimage" class="d-block img-fluid" src="{{ work.image.url }}" alt="First slide">
+                                </div>
+                                <p>{{ work.description }}</p>
+                              </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-3 col-md-12">
+                    <div class="card">
+                        <ul class="row profile_state list-unstyled">
+                            <li class="col-lg-6 col-6">
+                                <div class="body">
+                                    <i class="fa fa-camera"></i>
+                                    <h5 class="mb-0 number count-to" data-from="0" data-to="2365" data-speed="1000" data-fresh-interval="700">2365</h5>
+                                    <small>Shots View</small>
+                                </div>
+                            </li>
+                            <li class="col-lg-6 col-6">
+                                <div class="body">
+                                    <i class="fa fa-thumbs-o-up"></i>
+                                    <h5 class="mb-0 number count-to" data-from="0" data-to="1203" data-speed="1000" data-fresh-interval="700">1203</h5>
+                                    <small>Likes</small>
+                                </div>
+                            </li>
+                            <li class="col-lg-6 col-6">
+                                <div class="body">
+                                    <i class="fa fa-comments-o"></i>
+                                    <h5 class="mb-0 number count-to" data-from="0" data-to="324" data-speed="1000" data-fresh-interval="700">324</h5>
+                                    <small>Comments</small>
+                                </div>
+                            </li>
+                            <li class="col-lg-6 col-6">
+                                <div class="body">
+                                    <i class="fa fa-user"></i>
+                                    <h5 class="mb-0 number count-to" data-from="0" data-to="1980" data-speed="1000" data-fresh-interval="700">1980</h5>
+                                    <small>Profile Views</small>
+                                </div>
+                            </li>
+                            <li class="col-lg-6 col-6">
+                                <div class="body">
+                                    <i class="fa fa-desktop"></i>
+                                    <h5 class="mb-0 number count-to" data-from="0" data-to="251" data-speed="1000" data-fresh-interval="700">251</h5>
+                                    <small>Website View</small>
+                                </div>
+                            </li>
+                            <li class="col-lg-6 col-6">
+                                <div class="body">
+                                    <i class="fa fa-file-text text-warning"></i>
+                                    <h5 class="mb-0 number count-to" data-from="0" data-to="52" data-speed="1000" data-fresh-interval="700">52</h5>
+                                    <small>Attachment</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+{% endblock %}
+{% comment %} <h1> Details</h1>
+<img src="" alt="Company Logo">
 <p>Contact Details: {{ object.service_provider.contact_details }}</p>
 <p>Company Description: {{ object.service_provider.company_description }}</p>
 
@@ -7,4 +178,4 @@
 {% for work in object.service_provider.previouswork_set.all %}
 <p>Description: {{ work.description }}</p>
 <img src="{{ work.image.url }}" alt="Previous Work Image">
-{% endfor %}
+{% endfor %} {% endcomment %}
