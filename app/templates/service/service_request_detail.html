@@ -20,46 +20,42 @@
 
 
 <div class="col-md-12 col-lg-8">
-    <div class="card">
         <div class="header">
             <h2>Offers</h2>                            
         </div>
-        <div class="body">
             <div class="table-responsive social_media_table">
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Media</th>
-                            <th>Name</th>
-                            <th>Like</th>                                                                                
-                            <th>Comments</th>
-                            <th>Share</th>
-                            <th>Members</th>
+                            <th>ID</th>
+                            <th>Service Provider</th>
+                            <th>cost_estimate</th>                                                                                
+                            <th>completion_time</th>
+                            {% comment %} <th>Share</th>
+                            <th>Members</th> {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
                         {% for offer in object.offer_set.all %}
 
                         <tr>
-                            <td><span class="social_icon linkedin"><i class="fa fa-linkedin"></i></span>
+                            <td>#{{ offer.id }}</td>
                             </td>
                             <td><a href="{% url 'service:offer_detail' offer.pk %}">{{ offer.service_provider.business_name }}</a></td>
                             {% comment %} <span class="text-muted">Florida, United States</span> {% endcomment %}
                             </td>
-                            <td>19K</td>
+                            {% comment %} <td>19K</td> {% endcomment %}
                             <td>${{ offer.cost_estimate }}</td>
                             <td>{{ offer.completion_time }} days</td>
-                            <td>
+                            {% comment %} <td>
                                 <span class="badge badge-success">{{ offer.status }}</span>
-                            </td>
+                            </td> {% endcomment %}
                         </tr>
                         {% endfor %}
 
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
 </div>
 {% comment %} <p>Cost Estimate: {{ offer.cost_estimate }}</p>
 <p>Completion Time: {{ offer.completion_time }}</p>
