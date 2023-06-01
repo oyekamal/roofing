@@ -53,6 +53,8 @@ class ServiceProvider(models.Model):
     company_description = models.TextField()
     address = models.CharField(max_length=255, null=True)
     phone_number = models.CharField(max_length=20, null=True)
+    service_area = models.ManyToManyField(ServiceArea)
+    service_type = models.ManyToManyField(ServiceType)
     # location = PlainLocationField(based_fields=['city'], zoom=7)
     email = models.EmailField()  # Add the email field
     def __str__(self):
