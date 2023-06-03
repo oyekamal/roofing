@@ -11,37 +11,37 @@ class Command(BaseCommand):
         florida_counties = ["Alachua County",
                             "Baker County",
                             "Bay County",
-                            "Bradford County,"
+                            "Bradford County",
                             "Brevard County",
                             "Broward County",
                             "Calhoun County",
-                            "Charlotta Count,y"
+                            "Charlotta Count",
                             "Citrus County",
                             "Clay County",
                             "Collier County",
-                            "Columbia County,"
+                            "Columbia County",
                             "Dade County",
                             "De Soto County",
                             "Dixie County",
                             "Duval County",
-                            "Escambia County,"
+                            "Escambia County",
                             "Flagler County",
-                            "Franklin County,"
+                            "Franklin County",
                             "Gadsden County",
-                            "Gilchrist Count,y"
+                            "Gilchrist Count",
                             "Glades County",
                             "Gulf County",
-                            "Hamilton County,"
+                            "Hamilton County",
                             "Hardee County",
                             "Hendry County",
-                            "Hernando County,"
-                            "Highlands Count,y"
-                            "Hillsborough Co,unty"
+                            "Hernando County",
+                            "Highlands County",
+                            "Hillsborough County",
                             "Holmes County",
-                            "Indian River Co,unty"
+                            "Indian River County",
                             "Jackson County",
-                            "Jefferson Count,y"
-                            "Lafayette Count,y"
+                            "Jefferson County",
+                            "Lafayette County",
                             "Lake County",
                             "Lee County",
                             "Leon County",

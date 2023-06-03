@@ -50,7 +50,6 @@ class ServiceProviderAdmin(admin.ModelAdmin):
         'id',
         'user',
         'business_name',
-        'contact_details',
         'company_logo',
         'company_description',
     )
