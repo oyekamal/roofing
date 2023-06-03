@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="hero" class="clearfix">
+    <div class="d-flex justify-content-center w-100 ">
+    <div class="w-75 p-5 shadow rounded">
+        <h2>Service Providers</h2>
+        <a href="{% url 'service:service_provider_create' %}">Add Service Provider</a>
+        <ul>
+            {% for service_provider in object_list %}
+                <li>
+                    {{ service_provider.business_name }}
+                    {% if user == service_provider.user %}
+                        <a href="{% url 'service:service_provider_update' service_provider.pk %}">Edit</a>
+                        <a href="{% url 'service:service_provider_delete' service_provider.pk %}">Delete</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    </div>
+</section>
+{% endblock %}

@@ -17,5 +17,13 @@ urlpatterns = [
     path('service_request/<int:pk>/', views.ServiceRequestDetailView.as_view(),
          name='service_request_detail'),
     path('offer/<int:pk>/', views.OfferDetailView.as_view(), name='offer_detail'),
+    
+    #service_provider
+    path('service_providers/', views.ServiceProviderListView.as_view(), name='service_provider_list'),
+    path('service_providers/create/', views.ServiceProviderCreateView.as_view(), name='service_provider_create'),
+    path('service_providers/<int:pk>/update/', views.ServiceProviderUpdateView.as_view(), name='service_provider_update'),
+    path('service_providers/<int:pk>/delete/', views.ServiceProviderDeleteView.as_view(), name='service_provider_delete'),
+     path('service_providers/<int:pk>/', views.ServiceProviderDetailView.as_view(), name='service_provider_detail'),
 
 ]
+

@@ -57,6 +57,10 @@ class ServiceProvider(models.Model):
     service_type = models.ManyToManyField(ServiceType)
     # location = PlainLocationField(based_fields=['city'], zoom=7)
     email = models.EmailField()  # Add the email field
+    
+    def get_absolute_url(self):
+        return reverse('service_provider_list')
+    
     def __str__(self):
         return self.business_name
 

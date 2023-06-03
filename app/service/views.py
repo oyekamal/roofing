@@ -1,12 +1,54 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .forms import ServiceRequestForm, UserProfileForm
-from .models import UserProfile, ServiceRequest, Offer
+from .forms import ServiceRequestForm, UserProfileForm, ServiceProviderForm
+from .models import UserProfile, ServiceRequest, Offer, ServiceProvider
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 # Create your views here.
+
+class ServiceProviderDetailView(DetailView):
+    model = ServiceProvider
+    template_name = 'service/service_provider_detail.html'
+    
+class ServiceProviderListView(ListView):
+    model = ServiceProvider
+    template_name = 'service/service_provider_list.html'
+
+class ServiceProviderCreateView(LoginRequiredMixin, CreateView):
+    model = ServiceProvider
+    form_class = ServiceProviderForm
+    template_name = 'service/service_provider_form.html'
+    success_url = '/service_providers/'
+    
+    
+    def dispatch(self, request, *args, **kwargs):
+        if ServiceProvider.objects.filter(user=self.request.user).exists():
+            return redirect(reverse('service:service_provider_detail', args=[self.request.user.serviceprovider.pk]))
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class ServiceProviderUpdateView(LoginRequiredMixin, UpdateView):
+    model = ServiceProvider
+    form_class = ServiceProviderForm
+    template_name = 'service/service_provider_form.html'
+    success_url = '/service_providers/'
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class ServiceProviderDeleteView(DeleteView):
+    model = ServiceProvider
+    template_name = 'service/service_provider_confirm_delete.html'
+    success_url = '/service_providers/'
 
 
 def home(request):

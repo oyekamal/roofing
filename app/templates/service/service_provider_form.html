@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section id="hero" class="clearfix">
+    <div class="d-flex justify-content-center w-100 ">
+    <div class="w-75 p-5 shadow rounded">
+
+        
+    <h2>{% if form.instance.pk %}Edit Service Provider{% else %}Add Service Provider{% endif %}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+
+
+</div>
+</div>
+</section>
+{% endblock %}

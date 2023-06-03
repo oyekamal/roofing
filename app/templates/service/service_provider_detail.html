@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<section id="hero" class="clearfix">
+    <div class="d-flex justify-content-center w-100 ">
+    <div class="w-75 p-5 shadow rounded">
+
+        <h2>Service Provider Details</h2>
+        <p>Business Name: {{ object.business_name }}</p>
+        <p>Contact Details: {{ object.contact_details }}</p>
+        <p>Company Logo: <img src="{{ object.company_logo.url }}" alt="{{ object.business_name }}'s logo"></p>
+        <p>Company Description: {{ object.company_description }}</p>
+        <p>Address: {{ object.address }}</p>
+        <p>Phone Number: {{ object.phone_number }}</p>
+        <p>Service Areas:</p>
+        <ul>
+            {% for area in object.service_area.all %}
+            <li>{{ area }}</li>
+            {% endfor %}
+        </ul>
+        <p>Service Types:</p>
+        <ul>
+            {% for service_type in object.service_type.all %}
+            <li>{{ service_type }}</li>
+            {% endfor %}
+        </ul>
+        <p>Email: {{ object.email }}</p>
+      
+        <a href="{% url 'service:service_provider_update' object.pk %}">Edit</a>
+
+</div>
+</div>
+</section>
+
+<main id="main">
+</main>
+{% endblock %}

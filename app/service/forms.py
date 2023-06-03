@@ -2,11 +2,15 @@ from django import forms
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.forms import ModelForm
-from .models import ServiceRequest, UserProfile
+from .models import ServiceRequest, UserProfile, ServiceProvider
 
 
-
-
+class ServiceProviderForm(forms.ModelForm):
+    class Meta:
+        model = ServiceProvider
+        fields = '__all__'
+        exclude = ['user']
+        
 class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
