@@ -30,8 +30,9 @@
             {% endfor %}
         </ul>
         <p>Email: {{ object.email }}</p>
-      
+        {% if user == object.user %}
         <a href="{% url 'service:service_provider_update' object.pk %}">Edit</a>
+        {% endif %}
 
 </div>
 </div>
