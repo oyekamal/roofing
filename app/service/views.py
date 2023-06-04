@@ -85,38 +85,17 @@ class ServiceRequestDetailView(DetailView):
 def service_request(request):
     if request.method == "GET":
         form = ServiceRequestForm()
-
-        # Check if UserProfile exists
-        userprofile = UserProfile.objects.filter(user=request.user).first()
-        if userprofile:
-            userprofile_form = UserProfileForm(instance=userprofile)
-            show_userprofile_form = False
-        else:
-            userprofile_form = UserProfileForm()
-            show_userprofile_form = True
-
         mydict = {
             "form": form,
-            "userprofile_form": userprofile_form,
-            "show_userprofile_form": show_userprofile_form,
         }
         return render(request, "service/service_request_form.html", context=mydict)
     else:
         try:
             request.POST._mutable = True
             request_data = request.POST.copy()
-            request_data["client"] = request.user.id
+            request_data["client"] = request.user.id if request.user.is_authenticated else None
             request_data["status"] = "Open"
             form = ServiceRequestForm(request_data)
-
-            # Check if UserProfile exists, if not, create it
-            userprofile = UserProfile.objects.filter(user=request.user).first()
-            if not userprofile:
-                userprofile_data = {"user": request.user.id, "full_name": request_data.get("full_name"), "address": request_data.get(
-                    "address"), "phone_number": request_data.get("phone_number"), "is_client": True}
-                userprofile_form = UserProfileForm(userprofile_data)
-                if userprofile_form.is_valid():
-                    userprofile_form.save()
 
             if form.is_valid():
                 form.save()
@@ -129,3 +108,4 @@ def service_request(request):
         except Exception as e:
             print(e)
             return render(request, "service/service_request_form.html", {"form": form})
+        return render(request, "service/service_request_form.html", {"form": form})

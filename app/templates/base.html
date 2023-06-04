@@ -86,9 +86,8 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-
-          {% if user.is_authenticated %}
           <li><a class="nav-link scrollto" href="/service_request/">Hire</a></li>
+          {% if user.is_authenticated %}
           <li><a class="nav-link scrollto" href="/accounts/logout/">Sign out</a></li>
           {% else %}
           <li><a class="nav-link scrollto" href="/accounts/signup/">Sign up</a></li>

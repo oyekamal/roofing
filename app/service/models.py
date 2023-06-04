@@ -38,7 +38,7 @@ class ServiceRequest(models.Model):
     full_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20)
-    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     service_area = models.ForeignKey(ServiceArea, on_delete=models.CASCADE)
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
     description = models.TextField()
