@@ -65,7 +65,9 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li> {% endcomment %}
           <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
+              {% if user.is_authenticated %}
               <li><a href="/service_request_list/">My Requests</a></li>
+              {% endif %}
               <li class="dropdown"><a href="#"><span>Companies</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   {% for sp in all_service_providers %}
@@ -77,16 +79,17 @@
               {% if user.is_authenticated %}
                   {% if user_service_provider %}
                     <li><a href="{% url 'service:service_provider_detail' user_service_provider.pk %}">Company Profile</a></li>
+                    <li><a href="/client_service_request_list/">Service request</a></li>
                   {% else %}
                     <li><a href="{% url 'service:service_provider_create' %}">Create Company Profile</a></li>
                   {% endif %}
               {% endif %}
-              <li><a href="#">Drop Down 2</a></li>
+              
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="/service_request/">Hire</a></li>
+          <li><a class="nav-link scrollto" href="/service_request/">Post Request</a></li>
           {% if user.is_authenticated %}
           <li><a class="nav-link scrollto" href="/accounts/logout/">Sign out</a></li>
           {% else %}

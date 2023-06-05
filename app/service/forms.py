@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.forms import ModelForm
-from .models import ServiceRequest, UserProfile, ServiceProvider
+from .models import ServiceRequest, UserProfile, ServiceProvider, Offer
 
 
 class ServiceProviderForm(forms.ModelForm):
@@ -23,4 +23,8 @@ class ServiceRequestForm(ModelForm):
         fields = ('__all__')
         widgets = {"status": forms.HiddenInput(), "client": forms.HiddenInput()}
         
-    
+
+class OfferForm(forms.ModelForm):
+    class Meta:
+        model = Offer
+        fields = ['cost_estimate', 'completion_time']

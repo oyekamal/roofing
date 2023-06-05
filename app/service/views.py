@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .forms import ServiceRequestForm, UserProfileForm, ServiceProviderForm
+from .forms import ServiceRequestForm, UserProfileForm, ServiceProviderForm, OfferForm
 from .models import UserProfile, ServiceRequest, Offer, ServiceProvider
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
@@ -109,3 +109,31 @@ def service_request(request):
             print(e)
             return render(request, "service/service_request_form.html", {"form": form})
         return render(request, "service/service_request_form.html", {"form": form})
+
+
+
+def client_service_request_list(request):
+    user = request.user
+    if request.method == "GET":
+        if ServiceProvider.objects.filter(user=user).exists():
+            service_provider = ServiceProvider.objects.get(user=user)
+            service_requests = ServiceRequest.objects.filter(service_area__in=service_provider.service_area.all())
+            return render(request, 'service/client_service_request_list.html', {'service_requests': service_requests})
+        else:
+            # Handle cases where the user doesn't have a company account
+            pass
+        
+        
+def client_service_request_offer(request, service_request_id):
+    service_request = get_object_or_404(ServiceRequest, id=service_request_id)
+    if request.method == 'POST':
+        form = OfferForm(request.POST)
+        if form.is_valid():
+            offer = form.save(commit=False)
+            offer.service_provider = ServiceProvider.objects.get(user=request.user)
+            offer.service_request = service_request
+            offer.save()
+            # Redirect to a success page or the same page with a success message
+    else:
+        form = OfferForm()
+    return render(request, 'service/client_service_request_offer.html', {'service_request': service_request, 'form': form})

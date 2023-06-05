@@ -29,5 +29,7 @@ urlpatterns = [
          views.ServiceProviderDeleteView.as_view(), name='service_provider_delete'),
     path('service_providers/<int:pk>/',
          views.ServiceProviderDetailView.as_view(), name='service_provider_detail'),
-
+    path('client_service_request_list/', views.client_service_request_list, name='client_service_request_list'),
+    path('client_service_request_offer/<int:service_request_id>', views.client_service_request_offer, name='client_service_request_offer'),
+     
 ]

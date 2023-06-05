@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="hero" class="clearfix">
+    <div class="d-flex justify-content-center w-100 ">
+    <div class="w-75 p-5 shadow rounded">
+  <h1>Service Request Details</h1>
+  <p>Full Name: {{ service_request.full_name }}</p>
+  <p>Address: {{ service_request.address }}</p>
+  <p>Phone Number: {{ service_request.phone_number }}</p>
+  <p>Service Area: {{ service_request.service_area }}</p>
+  <p>Service Type: {{ service_request.service_type }}</p>
+  <p>Description: {{ service_request.description }}</p>
+  <p>Created At: {{ service_request.created_at }}</p>
+
+  <h2>Submit an Offer</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Offer</button>
+  </form>
+
+</div>
+</div>
+</section>
+{% endblock %}

@@ -11,7 +11,7 @@
     <div class="w-75 p-5 shadow rounded">
 
         <div class="header">
-            <h2>My Requests</h2>
+            <h2>Customer requests</h2>
         </div>
         <div class="body">
             <div class="fixed-height">
@@ -23,21 +23,21 @@
                             <th data-breakpoints="sm xs">Service Detail</th>
                             <th data-breakpoints="xs">Service Type</th>
                             <th>Created_at</th>
-                            <th data-breakpoints="xs md">Edit</th>
+                            <th data-breakpoints="xs md">Offer</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for each_service_request in service_requests %}
                         <tr>
-                            <td> {{each_service_request.full_name}}</td>
+                            <td>{{each_service_request.full_name}}</td>
                             {% comment %} <td><h5>{{each_service_request.service_area.name}}</h5></td> {% endcomment %}
-                            <td><a href="{% url 'service:service_request_detail' each_service_request.pk %}">{{each_service_request.service_area.name}}</a></td>
+                            <td>{{each_service_request.service_area.name}}</td>
                             <td>{{each_service_request.service_type.name}}</td>
                             <td>{{each_service_request.created_at}}</td>
                             {% comment %} <td><span class="badge badge-success bg-success text-white">Paid</span></td> {% endcomment %}
                             <td>
-                                <a href="{% url 'service:service_request_update' each_service_request.pk %}" class="btn btn-outline-secondary"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{% url 'service:service_request_delete' each_service_request.pk %}" class="btn btn-outline-secondary"><i class="bi bi-trash3"></i></a>                            </td>
+                                <a href="{% url 'service:client_service_request_offer' each_service_request.pk %}" class="btn btn-outline-secondary"><i class="bi bi-pencil-square"></i></a>
+                                {% comment %} <a href="{% url 'service:service_request_delete' each_service_request.pk %}" class="btn btn-outline-secondary"><i class="bi bi-trash3"></i></a>                            </td> {% endcomment %}
                         </tr>
                         {% endfor %}
   
