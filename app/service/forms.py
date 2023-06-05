@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.forms import ModelForm
-from .models import ServiceRequest, UserProfile, ServiceProvider, Offer
+from .models import ServiceRequest, UserProfile, ServiceProvider, Offer, PreviousWork
 
 
 class ServiceProviderForm(forms.ModelForm):
@@ -28,3 +28,10 @@ class OfferForm(forms.ModelForm):
     class Meta:
         model = Offer
         fields = ['cost_estimate', 'completion_time']
+        
+
+
+class PreviousWorkForm(forms.ModelForm):
+    class Meta:
+        model = PreviousWork
+        fields = ['image', 'description']

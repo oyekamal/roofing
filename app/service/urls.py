@@ -31,5 +31,10 @@ urlpatterns = [
          views.ServiceProviderDetailView.as_view(), name='service_provider_detail'),
     path('client_service_request_list/', views.client_service_request_list, name='client_service_request_list'),
     path('client_service_request_offer/<int:service_request_id>', views.client_service_request_offer, name='client_service_request_offer'),
+    
+    path('service_providers/<int:service_provider_id>/previous_work_list/', views.previous_work_list, name='previous_work_list'),
+    path('service_providers/<int:service_provider_id>/previous_work_create/', views.previous_work_create, name='previous_work_create'),
+    path('service_providers/<int:service_provider_id>/previous_work_update/<int:previous_work_id>/', views.previous_work_update, name='previous_work_update'),
+    path('service_providers/<int:service_provider_id>/previous_work_delete/<int:previous_work_id>/', views.previous_work_delete, name='previous_work_delete'),
      
 ]

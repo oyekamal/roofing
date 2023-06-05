@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .forms import ServiceRequestForm, UserProfileForm, ServiceProviderForm, OfferForm
-from .models import UserProfile, ServiceRequest, Offer, ServiceProvider
+from .forms import ServiceRequestForm, UserProfileForm, ServiceProviderForm, OfferForm, PreviousWorkForm
+from .models import UserProfile, ServiceRequest, Offer, ServiceProvider, PreviousWork
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import DetailView
@@ -137,3 +137,41 @@ def client_service_request_offer(request, service_request_id):
     else:
         form = OfferForm()
     return render(request, 'service/client_service_request_offer.html', {'service_request': service_request, 'form': form})
+
+
+
+def previous_work_list(request, service_provider_id):
+    service_provider = get_object_or_404(ServiceProvider, id=service_provider_id)
+    previous_works = PreviousWork.objects.filter(service_provider=service_provider)
+    return render(request, 'service/previous_work_list.html', {'previous_works': previous_works, 'service_provider': service_provider})
+
+def previous_work_create(request, service_provider_id):
+    service_provider = get_object_or_404(ServiceProvider, id=service_provider_id)
+    if request.method == 'POST':
+        form = PreviousWorkForm(request.POST, request.FILES)
+        if form.is_valid():
+            previous_work = form.save(commit=False)
+            previous_work.service_provider = service_provider
+            previous_work.save()
+            return redirect('service/previous_work_list', service_provider_id=service_provider.id)
+    else:
+        form = PreviousWorkForm()
+    return render(request, 'service/previous_work_form.html', {'form': form, 'service_provider': service_provider})
+
+def previous_work_update(request, service_provider_id, previous_work_id):
+    service_provider = get_object_or_404(ServiceProvider, id=service_provider_id)
+    previous_work = get_object_or_404(PreviousWork, id=previous_work_id)
+    if request.method == 'POST':
+        form = PreviousWorkForm(request.POST, request.FILES, instance=previous_work)
+        if form.is_valid():
+            form.save()
+            return redirect('service/previous_work_list', service_provider_id=service_provider.id)
+    else:
+        form = PreviousWorkForm(instance=previous_work)
+    return render(request, 'service/previous_work_form.html', {'form': form, 'service_provider': service_provider})
+
+def previous_work_delete(request, service_provider_id, previous_work_id):
+    service_provider = get_object_or_404(ServiceProvider, id=service_provider_id)
+    previous_work = get_object_or_404(PreviousWork, id=previous_work_id)
+    previous_work.delete()
+    return redirect('service/previous_work_list', service_provider_id=service_provider.id)

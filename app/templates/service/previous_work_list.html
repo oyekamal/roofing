@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Previous Work List</h1>
+  <a href="{% url 'previous_work_create' service_provider.id %}">Add Previous Work</a>
+  <ul>
+    {% for work in previous_works %}
+      <li>
+        <img src="{{ work.image.url }}" alt="{{ work.description }}" width="100px">
+        <p>{{ work.description }}</p>
+        <a href="{% url 'previous_work_update' service_provider.id work.id %}">Edit</a>
+        <a href="{% url 'previous_work_delete' service_provider.id work.id %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
