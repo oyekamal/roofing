@@ -153,7 +153,7 @@ def previous_work_create(request, service_provider_id):
             previous_work = form.save(commit=False)
             previous_work.service_provider = service_provider
             previous_work.save()
-            return redirect('service/previous_work_list', service_provider_id=service_provider.id)
+            return redirect(reverse('service:service_provider_detail', kwargs={'pk': service_provider.id}))
     else:
         form = PreviousWorkForm()
     return render(request, 'service/previous_work_form.html', {'form': form, 'service_provider': service_provider})
@@ -165,7 +165,7 @@ def previous_work_update(request, service_provider_id, previous_work_id):
         form = PreviousWorkForm(request.POST, request.FILES, instance=previous_work)
         if form.is_valid():
             form.save()
-            return redirect('service/previous_work_list', service_provider_id=service_provider.id)
+            return redirect(reverse('service:service_provider_detail', kwargs={'pk': service_provider.id}))
     else:
         form = PreviousWorkForm(instance=previous_work)
     return render(request, 'service/previous_work_form.html', {'form': form, 'service_provider': service_provider})
@@ -174,4 +174,5 @@ def previous_work_delete(request, service_provider_id, previous_work_id):
     service_provider = get_object_or_404(ServiceProvider, id=service_provider_id)
     previous_work = get_object_or_404(PreviousWork, id=previous_work_id)
     previous_work.delete()
-    return redirect('service/previous_work_list', service_provider_id=service_provider.id)
+    # return redirect('service/previous_work_list', service_provider_id=service_provider.id)
+    return redirect(reverse('service:service_provider_detail', kwargs={'pk': service_provider.id}))
