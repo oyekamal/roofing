@@ -1,10 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load crispy_forms_tags %}
+<section id="hero" class="clearfix">
+  <div class="container">
+      <div class="row justify-content-center">
+
   <h1>{% if form.instance.pk %}Edit Previous Work{% else %}Add Previous Work{% endif %}</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit">Save</button>
   </form>
+</div>
+</div>
+</section>
+
 {% endblock %}
