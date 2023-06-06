@@ -16,6 +16,10 @@
                             <div id="main-content">
                                 <div class="block-header">
                                     <h2>{{ object.service_provider.business_name }}</h2>
+                                    {% if user == object.service_provider.user %}
+                                        <a href="{% url 'service:previous_work_create' service_provider_id=object.service_provider.pk %}" class="btn btn-primary">Add Previous Work</a>
+                                        <a href="{% url 'service:service_provider_update' object.service_provider.pk %}" class="btn btn-secondary">Edit</a>
+                                    {% endif %}
                                 </div>
 
                                 <div class="row">
@@ -39,6 +43,21 @@
                                                 <small class="text-muted">Mobile:</small>
                                                 <p>{{ object.service_provider.phone_number }}</p>
                                                 <hr>
+                                                
+                                                <small class="text-muted">Service Types:</small>
+                                                <ul>
+                                                    {% for service_type in object.service_provider.service_type.all %}
+                                                    <li>{{ service_type }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                                <hr>
+                                                <small class="text-muted">Service Areas:</small>
+                                                <ul>
+                                                    {% for area in object.service_provider.service_area.all %}
+                                                    <li>{{ area }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                                <hr>
                                             </div>
                                         </div>
                                     </div>
@@ -47,6 +66,9 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <!-- Other content here -->
+                                                <small class="text-muted">Description:</small>
+                                                <p>{{ object.service_provider.company_description }}</p>
+                                                <hr>
                                             </div>
                                         </div>
 
@@ -59,6 +81,10 @@
                                                                 <img id="serviceworkimage" class="d-block img-fluid" src="{{ work.image.url }}" alt="First slide">
                                                             </div>
                                                             <p>{{ work.description }}</p>
+                                                            {% if user == object.service_provider.user %}
+                                                                <a href="{% url 'service:previous_work_update' service_provider_id=object.service_provider.pk previous_work_id=work.pk %}" class="btn btn-secondary">Edit</a>
+                                                                <a href="{% url 'service:previous_work_delete' service_provider_id=object.service_provider.pk previous_work_id=work.pk %}" class="btn btn-danger">Delete</a>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 {% endfor %}
