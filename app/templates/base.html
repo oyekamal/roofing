@@ -4,10 +4,35 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  {% block head %}
+  
 
-  <title>Florida Roof Marketplace</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>{% block title %} Florida Roof Marketplace {% endblock %}</title>
+  <meta name="title" content="Florida Roof Marketplace">
+
+  <meta name="description" content=" Florida Roof Marketplace is an online platform designed to connect clients in need of rooftop repair services with reliable service providers who can fulfill those requests. Our goal is to simplify the process of finding and hiring professionals for various roof repair needs. ">
+  <meta name="keywords" content="    Rooftop repair services,
+                                      Reliable service providers,
+                                      Leaking roof,
+                                      Damaged shingles,
+                                      Sagging roof,
+                                      Flashing issues,
+                                      Valley problems,
+                                      Low slope roof,
+                                      Poor roof pitch,
+                                      Gutter and downspout repair,
+                                      Fascia and soffit damage,
+                                      Roof truss issues,
+                                      Garage roof repair,
+                                      Roofing contractors,
+                                      Roof repair marketplace,
+                                      Online roofing services,
+                                      Roofing professionals,
+                                      Roofing solutions,
+                                      Roofing experts,
+                                      Roof maintenance,">
+          
+  {% endblock %}
   {% load static %}
   <!-- Favicons -->
   {% comment %} <link href="{% static 'img/favicon.png' %}" rel="icon"> {% endcomment %}
@@ -42,7 +67,7 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-
+  
 </head>
 
 <body>
@@ -135,21 +160,21 @@
             <div class="row">
 
               <div class="col-sm-12">
-
                 <div class="footer-info">
                   <h3>Florida Roof Marketplace</h3>
-                  <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+                  <p>At Florida Roof Marketplace, we connect clients in need of reliable rooftop repair services with trusted service providers. Our mission is to simplify the process of finding and hiring professionals to meet your roof repair needs.</p>
                 </div>
-
-                <div class="footer-newsletter">
-                  <h4>Our Newsletter</h4>
-                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem.</p>
-                  {% comment %} <form action="" method="post">
-                    <input type="email" name="email"><input type="submit" value="Subscribe">
-                  </form> {% endcomment %}
-                </div>
-
+              
+                {% comment %} <div class="footer-newsletter">
+                  <h4>Stay Informed with Our Newsletter</h4>
+                  <p>Sign up for our newsletter to receive the latest updates and expert insights on rooftop repair and maintenance. Stay ahead with valuable tips and industry news to keep your roof in optimal condition.</p>
+                  <!-- <form action="" method="post">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <input type="submit" value="Subscribe">
+                  </form> -->
+                </div> {% endcomment %}
               </div>
+              
 
               {% comment %} <div class="col-sm-6">
                 <div class="footer-links">
