@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import ServiceRequestForm, UserProfileForm, ServiceProviderForm, OfferForm, PreviousWorkForm
-from .models import UserProfile, ServiceRequest, Offer, ServiceProvider, PreviousWork
+from .models import UserProfile, ServiceRequest, Offer, ServiceProvider, PreviousWork, Testimonials
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import DetailView
@@ -52,8 +52,8 @@ class ServiceProviderDeleteView(DeleteView):
 
 
 def home(request):
-
-    return render(request, "service/home.html")
+    testimonials = Testimonials.objects.all().order_by('-created_at')[:4]
+    return render(request, "service/home.html", {"testimonials":testimonials})
 
 class OfferDetailView(DetailView):
     model = Offer

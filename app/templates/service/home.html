@@ -452,49 +452,18 @@
           <div class="col-lg-8">
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
               <div class="swiper-wrapper">
+                {% for testimonial in testimonials %}
                 <div class="swiper-slide">
                   <div class="testimonial-item">
                     <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
-                    <h3>John Doe</h3>
-                    <h4>Client</h4>
+                    <h3>{{ testimonial.name }}</h3>
+                    <h4>{{ testimonial.type_of_client }}</h4>
                     <p>
-                      "Florida Roof Marketplace provided excellent service. Their team of professionals repaired my leaking roof efficiently and at a reasonable cost. Highly recommended!"
+                      "{{ testimonial.message }}"
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide">
-                  <div class="testimonial-item">
-                    <img src="assets/img/testimonial-2.jpg" class="testimonial-img" alt="">
-                    <h3>Jane Smith</h3>
-                    <h4>Homeowner</h4>
-                    <p>
-                      "I had missing shingles on my roof, and Florida Roof Marketplace connected me with a skilled roofer who did a fantastic job replacing them. The process was seamless, and I'm very satisfied with the results."
-                    </p>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide">
-                  <div class="testimonial-item">
-                    <img src="assets/img/testimonial-3.jpg" class="testimonial-img" alt="">
-                    <h3>David Wilson</h3>
-                    <h4>Business Owner</h4>
-                    <p>
-                      "I contacted Florida Roof Marketplace for a sagging roof issue, and they quickly matched me with an experienced contractor. The team worked diligently and resolved the problem professionally. Thank you!"
-                    </p>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide">
-                  <div class="testimonial-item">
-                    <img src="assets/img/testimonial-4.jpg" class="testimonial-img" alt="">
-                    <h3>Linda Thompson</h3>
-                    <h4>Property Manager</h4>
-                    <p>
-                      "Florida Roof Marketplace is a reliable platform for finding roof repair services. They helped me address flashing issues on multiple properties, and the service providers they recommended delivered exceptional results."
-                    </p>
-                  </div>
-                </div><!-- End testimonial item -->
+                {% endfor %}
               </div>
               <div class="swiper-pagination"></div>
             </div>

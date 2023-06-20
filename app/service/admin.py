@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import UserProfile, ServiceArea, ServiceType, ServiceRequest, ServiceProvider, PreviousWork, Offer, ChatMessage
+from .models import UserProfile, ServiceArea, ServiceType, ServiceRequest, ServiceProvider, PreviousWork, Offer, ChatMessage, Testimonials
 
 
 @admin.register(UserProfile)
@@ -21,6 +21,12 @@ class UserProfileAdmin(admin.ModelAdmin):
 class ServiceAreaAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description')
     search_fields = ('name',)
+    
+@admin.register(Testimonials)
+class TestimonialsAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
 
 
 @admin.register(ServiceType)
