@@ -108,3 +108,13 @@ class ChatMessage(models.Model):
 
     def __str__(self):
         return self.sender.username + ": <-> : " + self.receiver.username
+
+
+class Testimonials(models.Model):
+    name = models.CharField(max_length=255)
+    type_of_client = models.CharField(max_length=255)
+    message = models.TextField()
+    
+    
+    def __str__(self):
+        return self.name + " : " + self.type_of_client

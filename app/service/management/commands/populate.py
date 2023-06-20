@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from service.models import ServiceArea, ServiceType
+from service.models import ServiceArea, ServiceType, Testimonials
 
 
 class Command(BaseCommand):
@@ -87,3 +87,30 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'Created service type for {service}'))
             else:
                 self.stdout.write(self.style.NOTICE(f'Service type for {service} already exists'))
+                
+                
+        Testimoniales = [
+            {"name": "John Doe",
+             "type_of_client":"Client",
+             "message": "\"Florida Roof Marketplace provided excellent service. Their team of professionals repaired my leaking roof efficiently and at a reasonable cost. Highly recommended!\""},
+            {"name": "Jane Smith",
+             "type_of_client":"Homeowner",
+             "message": "\"I had missing shingles on my roof, and Florida Roof Marketplace connected me with a skilled roofer who did a fantastic job replacing them. The process was seamless, and I'm very satisfied with the results.\""},
+            {"name": "David Wilson",
+             "type_of_client":"Business Owner",
+             "message": "\"I contacted Florida Roof Marketplace for a sagging roof issue, and they quickly matched me with an experienced contractor. The team worked diligently and resolved the problem professionally. Thank you!\""},
+            {"name": "Linda Thompson",
+             "type_of_client":"Property Manager",
+             "message": "\"Florida Roof Marketplace is a reliable platform for finding roof repair services. They helped me address flashing issues on multiple properties, and the service providers they recommended delivered exceptional results.\""},
+        ]
+        
+        for t in Testimoniales:
+            testimo, created = Testimonials.objects.get_or_create(name=t['name'])
+            if created:
+                testimo.type_of_client = t['type_of_client']
+                testimo.message = t['message']
+                testimo.save()
+                self.stdout.write(self.style.SUCCESS(f'Created  {t["name"]}'))
+            else:
+                self.stdout.write(self.style.NOTICE(f'{t["name"]} already exists'))
+                
