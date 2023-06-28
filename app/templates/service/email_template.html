@@ -1,0 +1,33 @@
+<!-- email_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>New Service Request without Client</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">New Service Request without Client</h1>
+            <p class="lead">A new service request has been created without a client.</p>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col">
+                    <p><strong>Full Name:</strong> {{ full_name }}</p>
+                    <p><strong>Address:</strong> {{ address }}</p>
+                    <p><strong>Phone Number:</strong> {{ phone_number }}</p>
+                    <p><strong>Service Area:</strong> {{ service_area }}</p>
+                    <p><strong>Service Type:</strong> {{ service_type }}</p>
+                    <p><strong>Description:</strong> {{ description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
