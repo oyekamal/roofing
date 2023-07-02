@@ -8,6 +8,9 @@ from django.views.generic import DetailView
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import HttpResponseForbidden
 
 # Create your views here.
 
@@ -81,6 +84,55 @@ class ServiceRequestDeleteView(DeleteView):
 class ServiceRequestDetailView(DetailView):
     model = ServiceRequest
     template_name = 'service/service_request_detail.html'
+    
+class OfferAcceptedClient(DetailView):
+    model = Offer
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        service_provider_email = self.object.service_provider.email
+
+        accept_url = request.build_absolute_uri(reverse('service:accept_offer', kwargs={'pk': self.object.pk}))
+        reject_url = request.build_absolute_uri(reverse('service:reject_offer', kwargs={'pk': self.object.pk}))
+        cost_estimate = self.object.cost_estimate
+        deducted_amount = float(cost_estimate) * 0.01
+
+        send_mail(
+            'Offer Accepted',
+            'An offer has been accepted.\n\n'
+            'Accept: ' + accept_url + '\n'
+            'Reject: ' + reject_url + '\n\n'
+            'Note: 1% of the cost estimate (' + str(deducted_amount) + ') will be deducted from your account.',
+            settings.DEFAULT_FROM_EMAIL,
+            [service_provider_email],
+            fail_silently=False,
+        )
+
+        return super().get(request, *args, **kwargs)
+
+class AcceptOffer(DetailView):
+    model = Offer
+
+    def get(self, request, *args, **kwargs):
+        offer = self.get_object()
+        if offer.status != "Pending":
+            return HttpResponseForbidden("You cannot accept an offer which is not in 'Pending' status.")
+        offer.status = "Accepted"
+        offer.save()
+        # Add any other actions you want to perform when the offer is accepted
+        return super().get(request, *args, **kwargs)
+
+class RejectOffer(DetailView):
+    model = Offer
+
+    def get(self, request, *args, **kwargs):
+        offer = self.get_object()
+        if offer.status != "Pending":
+            return HttpResponseForbidden("You cannot reject an offer which is not in 'Pending' status.")
+        offer.status = "Rejected"
+        offer.save()
+        # Add any other actions you want to perform when the offer is rejected
+        return super().get(request, *args, **kwargs)
 
 def service_request(request):
     if request.method == "GET":

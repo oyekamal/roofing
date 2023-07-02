@@ -89,8 +89,11 @@ class Offer(models.Model):
         ServiceRequest, on_delete=models.CASCADE)
     cost_estimate = models.DecimalField(max_digits=10, decimal_places=2)
     completion_time = models.PositiveIntegerField()
-    status = models.CharField(max_length=20, choices=[(
-        "Pending", "Pending"), ("Accepted", "Accepted"), ("Rejected", "Rejected")])
+    status = models.CharField(
+        max_length=20,
+        choices=[("Pending", "Pending"), ("Accepted", "Accepted"), ("Rejected", "Rejected")],
+        default="Pending"
+    )
 
     def __str__(self):
         return self.service_provider.business_name + ": offer : " + str(self.cost_estimate)

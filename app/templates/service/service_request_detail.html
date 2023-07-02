@@ -31,8 +31,9 @@
                             <th>Service Provider</th>
                             <th>cost_estimate</th>                                                                                
                             <th>completion_time</th>
-                            {% comment %} <th>Share</th>
-                            <th>Members</th> {% endcomment %}
+                            <th>States</th>
+                            <th>Accept</th>
+                            {% comment %} <th>Members</th> {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
@@ -47,9 +48,10 @@
                             {% comment %} <td>19K</td> {% endcomment %}
                             <td>${{ offer.cost_estimate }}</td>
                             <td>{{ offer.completion_time }} days</td>
-                            {% comment %} <td>
-                                <span class="badge badge-success">{{ offer.status }}</span>
-                            </td> {% endcomment %}
+                            <td>{{ offer.status }}</td>
+                            <td>
+                                <a href="{% url 'service:client_accepted_offer' offer.id %}" class="btn btn-outline-secondary"><i class="bi bi-check"></i></a>
+                            </td> 
                         </tr>
                         {% endfor %}
 

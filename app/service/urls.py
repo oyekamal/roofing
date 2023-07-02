@@ -36,5 +36,11 @@ urlpatterns = [
     path('service_providers/<int:service_provider_id>/previous_work_create/', views.previous_work_create, name='previous_work_create'),
     path('service_providers/<int:service_provider_id>/previous_work_update/<int:previous_work_id>/', views.previous_work_update, name='previous_work_update'),
     path('service_providers/<int:service_provider_id>/previous_work_delete/<int:previous_work_id>/', views.previous_work_delete, name='previous_work_delete'),
-     
+    
+    path('client_accepted_offer/<int:pk>/', views.OfferAcceptedClient.as_view(),
+         name='client_accepted_offer'),
+
+     path('accept_offer/<int:pk>/', views.AcceptOffer.as_view(), name='accept_offer'),
+     path('reject_offer/<int:pk>/', views.RejectOffer.as_view(), name='reject_offer'),
+
 ]
