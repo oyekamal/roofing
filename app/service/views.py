@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponseForbidden
-
+from django.template.loader import render_to_string
 # Create your views here.
 
 class ServiceProviderDetailView(DetailView):
@@ -97,15 +97,20 @@ class OfferAcceptedClient(DetailView):
         cost_estimate = self.object.cost_estimate
         deducted_amount = float(cost_estimate) * 0.01
 
+        context = {
+            'accept_url': accept_url,
+            'reject_url': reject_url,
+            'deducted_amount': deducted_amount,
+        }
+        html_content = render_to_string('service/email_offer_template.html', context)
+
         send_mail(
             'Offer Accepted',
-            'An offer has been accepted.\n\n'
-            'Accept: ' + accept_url + '\n'
-            'Reject: ' + reject_url + '\n\n'
-            'Note: 1% of the cost estimate (' + str(deducted_amount) + ') will be deducted from your account.',
+            '',
             settings.DEFAULT_FROM_EMAIL,
             [service_provider_email],
             fail_silently=False,
+            html_message=html_content,
         )
 
         return super().get(request, *args, **kwargs)

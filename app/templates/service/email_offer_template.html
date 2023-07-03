@@ -1,0 +1,40 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Offer Accepted</title>
+
+</head>
+<body>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <td class="navbar navbar-inverse" align="center">
+                <table width="650px" cellspacing="0" cellpadding="3" class="container">
+                    <tr class="navbar navbar-inverse">
+                        <td colspan="4"><a class="brand" href="[YOUR WEB URL]">Your Website</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#FFFFFF" align="center">
+                <table width="650px" cellspacing="0" cellpadding="3" class="container">
+                    <tr>
+                        <td>An offer has been accepted.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{{ accept_url }}" class="btn btn-success" >Accept</a>
+                            
+                            <a href="{{ reject_url }}" class="btn btn-danger">Reject</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Note: 1% of the cost estimate ({{ deducted_amount }}) will be deducted from your account.</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
