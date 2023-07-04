@@ -49,11 +49,13 @@ INSTALLED_APPS = [
     
     "crispy_bootstrap5",
     'django_extensions',
+    'paypal.standard.ipn',
     # 'location_field.apps.DefaultConfig',
 
 ]
 
-
+PAYPAL_RECEIVER_EMAIL = 'sb-zmqxo26505758@business.example.com'
+PAYPAL_TEST = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"

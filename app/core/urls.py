@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("service.urls")),
     path("accounts/", include("allauth.urls")),
+    path('paypal/', include('paypal.standard.ipn.urls')),
+
 
 ]
 

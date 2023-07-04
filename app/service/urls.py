@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -43,4 +43,6 @@ urlpatterns = [
      path('accept_offer/<int:pk>/', views.AcceptOffer.as_view(), name='accept_offer'),
      path('reject_offer/<int:pk>/', views.RejectOffer.as_view(), name='reject_offer'),
 
+     path('paypal-return/', views.PaypalReturnView.as_view(), name='paypal-return'),
+     path('paypal-cancel/', views.PaypalCancelView.as_view(), name='paypal-cancel'),
 ]

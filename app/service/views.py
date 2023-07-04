@@ -12,7 +12,16 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponseForbidden
 from django.template.loader import render_to_string
+from paypal.standard.forms import PayPalPaymentsForm
+from django.views.generic import TemplateView
+
 # Create your views here.
+
+class PaypalReturnView(TemplateView):
+    template_name = 'service/paypal_success.html'
+
+class PaypalCancelView(TemplateView):
+    template_name = 'service/paypal_cancel.html'
 
 class ServiceProviderDetailView(DetailView):
     model = ServiceProvider
@@ -123,9 +132,20 @@ class AcceptOffer(DetailView):
         if offer.status != "Pending":
             return HttpResponseForbidden("You cannot accept an offer which is not in 'Pending' status.")
         offer.status = "Accepted"
-        offer.save()
-        # Add any other actions you want to perform when the offer is accepted
-        return super().get(request, *args, **kwargs)
+        # offer.save()
+
+        paypal_dict = {
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
+            'amount': offer.cost_estimate,
+            'item_name': 'Offer',
+            'invoice': str(offer.pk),
+            "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+            'return_url': request.build_absolute_uri(reverse('service:paypal-return')),
+            'cancel_return': request.build_absolute_uri(reverse('service:paypal-cancel')),
+        }
+
+        form = PayPalPaymentsForm(initial=paypal_dict)
+        return render(request, 'service/paypal_form.html', {'form': form})
 
 class RejectOffer(DetailView):
     model = Offer
