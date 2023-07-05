@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>PayPal Payment</title>
-</head>
-<body>
-    <h2>Pay with PayPal</h2>
-    {{ form.render }}
-</body>
-</html>
+
+
+{% extends "base.html" %}
+
+{% block title %} Pay with PayPal {% endblock %}
+
+{% block content %}
+
+<section id="hero" class="clearfix">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2>Your payment is <strong>${{ amount }} </strong></h2>
+            <h2>Pay with PayPal</h2>
+            {{ form.render }}
+        </div>
+    </div>
+</section>
+{% endblock %}

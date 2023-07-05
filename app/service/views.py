@@ -133,10 +133,10 @@ class AcceptOffer(DetailView):
             return HttpResponseForbidden("You cannot accept an offer which is not in 'Pending' status.")
         offer.status = "Accepted"
         # offer.save()
-
+        amount = float(offer.cost_estimate) * 0.01
         paypal_dict = {
             'business': settings.PAYPAL_RECEIVER_EMAIL,
-            'amount': offer.cost_estimate,
+            'amount': amount ,
             'item_name': 'Offer',
             'invoice': str(offer.pk),
             "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
@@ -145,7 +145,7 @@ class AcceptOffer(DetailView):
         }
 
         form = PayPalPaymentsForm(initial=paypal_dict)
-        return render(request, 'service/paypal_form.html', {'form': form})
+        return render(request, 'service/paypal_form.html', {'form': form, "amount": amount})
 
 class RejectOffer(DetailView):
     model = Offer

@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment Successful</title>
-</head>
-<body>
-    <h2>Your payment was successful!</h2>
-    <p>Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you.</p>
-</body>
-</html>
+
+{% extends "base.html" %}
+
+{% block title %} Payment successful! {% endblock %}
+
+{% block content %}
+
+<section id="hero" class="clearfix">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2>Your payment was successful!</h2>
+            <p>Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
