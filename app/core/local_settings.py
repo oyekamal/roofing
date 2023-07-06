@@ -25,7 +25,19 @@ SECRET_KEY = 'django-insecure-r2=%c=36#8qq72mam*j3@k02=47r)00ps3me3lx4s(pn@7c4lz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8dd3-39-40-37-83.ngrok-free.app', 'localhost', '127.0.0.1']
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ['https://8dd3-39-40-37-83.ngrok-free.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://8dd3-39-40-37-83.ngrok-free.app']
 
 
 # Application definition
@@ -39,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # app
-    "service",
+    "service.apps.ServiceConfig",
 
     # packages
     "allauth",
@@ -50,11 +62,12 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'django_extensions',
     'paypal.standard.ipn',
+     'corsheaders',
     # 'location_field.apps.DefaultConfig',
 
 ]
 
-PAYPAL_RECEIVER_EMAIL = 'sb-zmqxo26505758@business.example.com'
+PAYPAL_RECEIVER_EMAIL = 'floridaroofmarketplace@gmail.com'
 PAYPAL_TEST = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -63,6 +76,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 #     'search.provider': 'google',
 # }
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

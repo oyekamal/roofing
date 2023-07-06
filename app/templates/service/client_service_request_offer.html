@@ -9,8 +9,8 @@
         <div class="card shadow rounded p-5">
           <h1>Service Request Details</h1>
           <p><strong>Full Name:</strong> {{ service_request.full_name }}</p>
-          <p><strong>Address:</strong> {{ service_request.address }}</p>
-          <p><strong>Phone Number:</strong> {{ service_request.phone_number }}</p>
+          {% comment %} <p><strong>Address:</strong> {{ service_request.address }}</p>
+          <p><strong>Phone Number:</strong> {{ service_request.phone_number }}</p> {% endcomment %}
           <p><strong>Service Area:</strong> {{ service_request.service_area }}</p>
           <p><strong>Service Type:</strong> {{ service_request.service_type }}</p>
           <p><strong>Description:</strong> {{ service_request.description }}</p>

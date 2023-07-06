@@ -15,7 +15,26 @@ from .models import Offer
 
 @receiver(valid_ipn_received)
 def paypal_payment_received(sender, **kwargs):
+    
     ipn_obj = sender
+    print("message: ", ST_PP_COMPLETED)
+    offer = Offer.objects.get(pk=ipn_obj.invoice)
+    subject = 'Client detail'
+    html_content = render_to_string('service/email_template.html', {
+        'full_name': offer.service_request.full_name,
+        'address': offer.service_request.address,
+        'phone_number': offer.service_request.phone_number,
+        'service_area': offer.service_request.service_area,
+        'service_type': offer.service_request.service_type,
+        'description': offer.service_request.description,
+    })
+    text_content = strip_tags(html_content)  # this strips the html, so people will have the text as well.
+    send_email = ['kamal.umar0987@gmail.com', offer.service_provider.email ]
+    msg = EmailMultiAlternatives(
+        subject, text_content, 'kamal.umar0987@gmail.com', send_email
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         if ipn_obj.receiver_email != settings.PAYPAL_RECEIVER_EMAIL:
             return
@@ -26,8 +45,8 @@ def paypal_payment_received(sender, **kwargs):
             print('Paypal ipn_obj data not valid!')
         else:
             print("paid--------")
-            # offer.paid = True
-            # offer.save()
+            offer.paid = True
+            offer.save()
     else:
         print('Paypal payment status not completed: %s' % ipn_obj.payment_status)
 

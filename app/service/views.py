@@ -105,7 +105,8 @@ class OfferAcceptedClient(DetailView):
         reject_url = request.build_absolute_uri(reverse('service:reject_offer', kwargs={'pk': self.object.pk}))
         cost_estimate = self.object.cost_estimate
         deducted_amount = float(cost_estimate) * 0.01
-
+        if deducted_amount < 0.1:
+            deducted_amount = 0.1  # set a minimum amount
         context = {
             'accept_url': accept_url,
             'reject_url': reject_url,
@@ -132,13 +133,16 @@ class AcceptOffer(DetailView):
         if offer.status != "Pending":
             return HttpResponseForbidden("You cannot accept an offer which is not in 'Pending' status.")
         offer.status = "Accepted"
-        # offer.save()
+        offer.save()
         amount = float(offer.cost_estimate) * 0.01
+        if amount < 0.1:
+            amount = 0.1  # set a minimum amount
         paypal_dict = {
             'business': settings.PAYPAL_RECEIVER_EMAIL,
             'amount': amount ,
             'item_name': 'Offer',
             'invoice': str(offer.pk),
+            'currency_code': 'USD',  # Add this line
             "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
             'return_url': request.build_absolute_uri(reverse('service:paypal-return')),
             'cancel_return': request.build_absolute_uri(reverse('service:paypal-cancel')),

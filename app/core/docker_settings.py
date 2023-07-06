@@ -27,13 +27,18 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
+CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -57,10 +62,12 @@ INSTALLED_APPS = [
     
     "crispy_bootstrap5",
     'django_extensions',
+    'paypal.standard.ipn',
     # 'location_field.apps.DefaultConfig',
 
 ]
-
+PAYPAL_RECEIVER_EMAIL = 'floridaroofmarketplace@gmail.com'
+PAYPAL_TEST = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 

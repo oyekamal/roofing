@@ -94,6 +94,7 @@ class Offer(models.Model):
         choices=[("Pending", "Pending"), ("Accepted", "Accepted"), ("Rejected", "Rejected")],
         default="Pending"
     )
+    paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.service_provider.business_name + ": offer : " + str(self.cost_estimate)
