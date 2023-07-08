@@ -55,6 +55,7 @@ def paypal_payment_received(sender, **kwargs):
 @receiver(post_save, sender=ServiceRequest)
 def send_email_notification(sender, instance, created, **kwargs):
     if created and instance.client is None:
+        print("Sending email notification... called with no client")
         subject = 'New Service Request without Client'
         html_content = render_to_string('service/email_template.html', {
             'full_name': instance.full_name,
@@ -67,7 +68,7 @@ def send_email_notification(sender, instance, created, **kwargs):
         text_content = strip_tags(html_content)  # this strips the html, so people will have the text as well.
 
         msg = EmailMultiAlternatives(
-            subject, text_content, 'kamal.umar0987@gmail.com', ['kamal.umar0987@gmail.com']
+            subject, text_content, settings.DEFAULT_FROM_EMAIL, [settings.DEFAULT_FROM_EMAIL,]
         )
         msg.attach_alternative(html_content, "text/html")
         msg.send()
