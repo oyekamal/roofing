@@ -40,7 +40,14 @@ allowed_hosts = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 CORS_ALLOWED_ORIGINS = ['https://' + host for host in allowed_hosts] + ['http://' + host for host in allowed_hosts]
 CSRF_TRUSTED_ORIGINS = ['https://' + host for host in allowed_hosts] + ['http://' + host for host in allowed_hosts]
+CORS_ORIGIN_WHITELIST = ['https://' + host for host in allowed_hosts] + ['http://' + host for host in allowed_hosts]
 
+
+print("--"*30)
+
+
+print(CORS_ALLOWED_ORIGINS)
+print("--"*30)
 # Application definition
 
 INSTALLED_APPS = [
