@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     
     # app
     "service.apps.ServiceConfig",
+    "blog",
 
     # packages
     "allauth",
@@ -64,13 +65,16 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
      'corsheaders',
     # 'location_field.apps.DefaultConfig',
+    "google_analytics"
 
 ]
 
 PAYPAL_RECEIVER_EMAIL = 'floridaroofmarketplace@gmail.com'
 PAYPAL_TEST = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': 'G-4DXRZ79433',
+}
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 # LOCATION_FIELD = {
 #     'search.provider': 'google',

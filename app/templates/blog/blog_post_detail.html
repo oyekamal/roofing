@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+  <title>{% block title %}{{ blog_post.title }}{% endblock %}</title>
+  <meta name="title" content="{{ blog_post.title }}">
+  <meta name="description" content="{{ blog_post.meta_description }}">
+  <meta name="keywords" content="{{ blog_post.keywords }}">    
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}   
+
+
+<section id="hero" class="clearfix">
+    <div class="container">
+        <div class="row justify-content-center">
+            
+
+            <!-- blog_post_list.html -->
+
+        <!-- blog_post_detail.html -->
+        <h2>{{ blog_post.title }}</h2>
+        <img src="{{ blog_post.image.url }}" alt="{{ blog_post.title }}" width="400">
+        <p>{{ blog_post.content }}</p>
+        <!-- Display other fields as needed -->
+
+
+        </div>
+    </div>
+</section>
+{% endblock %}
