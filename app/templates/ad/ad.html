@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Service Request</h2>
+
+<form id="serviceRequestForm">
+  Full name:<br>
+  <input type="text" id="fullName"><br>
+  Address:<br>
+  <input type="text" id="address"><br>
+  Phone number:<br>
+  <input type="text" id="phoneNumber"><br>
+  Description:<br>
+  <input type="text" id="description"><br>
+  Service area:<br>
+  <select id="serviceArea"></select><br>
+  Service type:<br>
+  <select id="serviceType"></select><br>
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+// Fetch service areas and populate select dropdown
+fetch('http://localhost:8000/api/service-area')
+  .then(response => response.json())
+  .then(data => {
+    const select = document.getElementById('serviceArea');
+    data.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.text = item.name;
+      select.appendChild(option);
+    });
+  });
+
+// Fetch service types and populate select dropdown
+fetch('http://localhost:8000/api/service-type')
+  .then(response => response.json())
+  .then(data => {
+    const select = document.getElementById('serviceType');
+    data.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.text = item.name;
+      select.appendChild(option);
+    });
+  });
+
+// Add event listener to form submission
+document.getElementById('serviceRequestForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Create new service request
+  fetch('http://localhost:8000/api/service-request/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      full_name: document.getElementById('fullName').value,
+      address: document.getElementById('address').value,
+      phone_number: document.getElementById('phoneNumber').value,
+      service_area: document.getElementById('serviceArea').value,
+      service_type: document.getElementById('serviceType').value,
+      description: document.getElementById('description').value,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+});
+</script>
+
+</body>
+</html>

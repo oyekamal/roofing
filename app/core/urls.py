@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("service.urls")),
     path("", include("blog.urls")),
+    path("api/", include("service_api.urls")),
     path("accounts/", include("allauth.urls")),
     path('paypal/', include('paypal.standard.ipn.urls')),
     re_path('djga/', include('google_analytics.urls')),

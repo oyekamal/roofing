@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # app
     "service.apps.ServiceConfig",
     "blog",
+    "service_api",
 
     # packages
     "allauth",
@@ -65,9 +66,11 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
      'corsheaders',
     # 'location_field.apps.DefaultConfig',
-    "google_analytics"
+    "google_analytics",
+    'rest_framework'
 
 ]
+APPEND_SLASH = False
 
 PAYPAL_RECEIVER_EMAIL = 'floridaroofmarketplace@gmail.com'
 PAYPAL_TEST = True

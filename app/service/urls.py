@@ -45,4 +45,6 @@ urlpatterns = [
 
      path('paypal-return/', views.PaypalReturnView.as_view(), name='paypal-return'),
      path('paypal-cancel/', views.PaypalCancelView.as_view(), name='paypal-cancel'),
+     path('ad-create-service-request/', views.ad_create_service_request, name='ad-create-service-request'),
+
 ]

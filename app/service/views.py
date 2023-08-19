@@ -257,3 +257,36 @@ def previous_work_delete(request, service_provider_id, previous_work_id):
     previous_work.delete()
     # return redirect('service/previous_work_list', service_provider_id=service_provider.id)
     return redirect(reverse('service:service_provider_detail', kwargs={'pk': service_provider.id}))
+
+
+
+# views.py
+from django.http import JsonResponse
+
+def ad_create_service_request(request):
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        address = request.POST.get('address')
+        phone_number = request.POST.get('phone_number')
+        service_area = request.POST.get('service_area')
+        service_type = request.POST.get('service_type')
+        description = request.POST.get('description')
+        
+        # Validate the submitted data
+        
+        # Create a new ServiceRequest object
+        service_request = ServiceRequest(
+            full_name=full_name,
+            address=address,
+            phone_number=phone_number,
+            service_area=service_area,
+            service_type=service_type,
+            description=description
+        )
+        
+        # Save the object to the database
+        service_request.save()
+        
+        return JsonResponse({'message': 'Service request created successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
