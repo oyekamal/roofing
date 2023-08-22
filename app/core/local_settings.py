@@ -70,7 +70,7 @@ INSTALLED_APPS = [
     'rest_framework'
 
 ]
-APPEND_SLASH = False
+# APPEND_SLASH = False
 
 PAYPAL_RECEIVER_EMAIL = 'floridaroofmarketplace@gmail.com'
 PAYPAL_TEST = True
