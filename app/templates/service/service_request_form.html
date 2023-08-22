@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %} Home {% endblock %}
 
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% block head %}
 
+<title>{% block title %} Service request form {% endblock %}</title>
+<meta name="title" content="Florida Roof Marketplace">
 
+<meta name="description" content="Get reliable roof repair services near you at Florida Roof Marketplace. Expert solutions for all your roofing needs. Contact us today!">
+<meta name="keywords" content="Roof Repair Services Near me
+Roof Flashing Repair and Replacement fl
+Repair Roof Flashing Florida
+Damaged roof repair Florida">
+        
+{% endblock %}
 
 <section id="hero" class="clearfix">
     <div class="d-flex justify-content-center w-100 ">
