@@ -287,7 +287,21 @@
   <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <!-- Include Swiper JS and CSS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
+  <!-- Initialize Swiper -->
+  <script>
+  var swiper = new Swiper('.testimonials-slider', {
+    slidesPerView: 1,
+    spaceBetween: 2,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+  </script>
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DXRZ79433"></script>

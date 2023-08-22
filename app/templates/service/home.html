@@ -453,35 +453,35 @@
       </div>
     </section><!-- End Portfolio Section --> {% endcomment %}
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" >
-        <header class="section-header">
-          <h3>Testimonials</h3>
-        </header>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="testimonials-slider swiper" >
-              <div class="swiper-wrapper">
-                {% for testimonial in testimonials %}
-                <div class="swiper-slide">
-                  <div class="testimonial-item">
-                    <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
-                    <h3>{{ testimonial.name }}</h3>
-                    <h4>{{ testimonial.type_of_client }}</h4>
-                    <p>
-                      "{{ testimonial.message }}"
-                    </p>
-                  </div>
-                </div><!-- End testimonial item -->
-                {% endfor %}
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials">
+  <div class="container">
+    <header class="section-header">
+      <h3>Testimonials</h3>
+    </header>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="testimonials-slider swiper">
+          <div class="swiper-wrapper">
+            {% for testimonial in testimonials %}
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
+                <h3>{{ testimonial.name }}</h3>
+                <h4>{{ testimonial.type_of_client }}</h4>
+                <p>
+                  "{{ testimonial.message }}"
+                </p>
               </div>
-              <div class="swiper-pagination"></div>
-            </div>
+            </div><!-- End testimonial item -->
+            {% endfor %}
           </div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
-    </section><!-- End Testimonials Section -->
+    </div>
+  </div>
+</section><!-- End Testimonials Section -->
     
 
     <!-- ======= Clients Section ======= -->
