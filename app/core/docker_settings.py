@@ -59,10 +59,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # app
-    "service",
+    "service.apps.ServiceConfig",
+    "blog",
+    "service_api",
 
     # packages
-    "corsheaders",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -71,9 +72,10 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'django_extensions',
     'paypal.standard.ipn',
+     'corsheaders',
     # 'location_field.apps.DefaultConfig',
-    "google_analytics"
-
+    "google_analytics",
+    'rest_framework'
 
 ]
 PAYPAL_RECEIVER_EMAIL = 'floridaroofmarketplace@gmail.com'
