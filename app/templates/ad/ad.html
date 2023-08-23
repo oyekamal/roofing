@@ -22,7 +22,7 @@
 
 <script>
 // Fetch service areas and populate select dropdown
-fetch('http://localhost:8000/api/service-area')
+fetch('https://floridaroofmarketplace.com/api/service-area')
   .then(response => response.json())
   .then(data => {
     const select = document.getElementById('serviceArea');
@@ -35,7 +35,7 @@ fetch('http://localhost:8000/api/service-area')
   });
 
 // Fetch service types and populate select dropdown
-fetch('http://localhost:8000/api/service-type')
+fetch('https://floridaroofmarketplace.com/api/service-type')
   .then(response => response.json())
   .then(data => {
     const select = document.getElementById('serviceType');
@@ -52,7 +52,7 @@ document.getElementById('serviceRequestForm').addEventListener('submit', functio
   event.preventDefault();
 
   // Create new service request
-  fetch('http://localhost:8000/api/service-request/', {
+  fetch('https://floridaroofmarketplace.com/api/service-request/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
